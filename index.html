@@ -6,10 +6,8 @@
   <title>Auto-Quiz</title>
 
   <link rel="stylesheet" href="style.css">
-
-  <!-- ✅ оставляем только один manifest -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="images/icon-192.png">
 
   <!-- iOS support -->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -29,11 +27,10 @@
     <button id="install-btn" style="display:none">Install App</button>
   </div>
 
-  <!-- ✅ Скрипт Service Worker -->
+  <!-- ✅ Service Worker -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        // ⚠️ убрал "/" в начале — на GitHub Pages это ломает
         navigator.serviceWorker.register('service-worker.js')
           .then(reg => console.log('✅ Service worker registered:', reg.scope))
           .catch(err => console.error('❌ Service worker registration failed:', err));
