@@ -1,15 +1,13 @@
 {
   "name": "Auto-Quiz",
   "short_name": "Quiz",
-  "start_url": "/index.html",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#007bff",
+  "theme_color": "#ffffff",
   "icons": [
-    {
-      "src": "images/distance_sign.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    }
+    { "src": "/images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/images/icon-512.png", "sizes": "512x512", "type": "image/png" }
   ]
 }
