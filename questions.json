@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "question": "Was tun Sie, wenn nach einem Unfall der Bahnbetrieb behindert wird?",
+    "question_translation": "What should you do if train operations are obstructed after an accident?",
+    "options": [
+      "Ich benachrichtige sofort die Polizei und die Bahnverwaltung.",
+      "Ich sorge dafür, dass die Unfallstelle nicht verändert wird, bis die Polizei eintrifft.",
+      "Ich verlasse den Bahnübergang so schnell wie möglich."
+    ],
+    "options_translation": [
+      "I immediately notify the police and the railway administration.",
+      "I make sure the accident site is not altered until the police arrive.",
+      "I leave the railway crossing as quickly as possible."
+    ],
+    "answer": [0,2],
+    "image": "images/accident_sign.png"
+  },
+  {
+    "id": 2,
+    "question": "Sie beschädigen ein parkiertes Fahrzeug. Wie verhalten Sie sich?",
+    "question_translation": "You damage a parked vehicle. What should you do?",
+    "options": [
+      "Es reicht, wenn ich am beschädigten Fahrzeug eine Notiz mit meinen Angaben hinterlasse",
+      "Ich avisiere die Polizei, wenn ich den Geschädigten nicht sofort benachrichtigen kann",
+      "Ich muss nur ein Unfallprotokoll ausfüllen und es meiner Versicherung zusenden"
+    ],
+    "options_translation": [
+      "It is enough if I leave a note with my information on the damaged vehicle",
+      "I notify the police if I cannot immediately contact the owner",
+      "I only need to fill out an accident report and send it to my insurance"
+    ],
+    "answer": [1],
+    "image": "images/parked_car.png"
+  }
+]

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto-Quiz</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <div id="quiz-container">
+  <h1 id="question-text"></h1>
+  <img id="question-image" src="" alt="Question Image">
+  <div id="options"></div>
+  <button id="check-btn" onclick="checkAnswer()">Antwort bestätigen</button>
+  <button id="next-btn" onclick="nextQuestion()" style="display:none">Nächste Frage</button>
+  <button id="translate-btn" onclick="toggleTranslation()">Übersetzung anzeigen</button>
+  <button id="restart-btn" onclick="restartQuiz()">Neu starten</button>
+</div>
+
+
+  <script src="app.js"></script>
+</body>
+</html>
