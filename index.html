@@ -4,29 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Auto-Quiz</title>
+
   <link rel="stylesheet" href="style.css">
+
+  <!-- ✅ оставляем только один manifest -->
   <link rel="manifest" href="manifest.json">
-  <link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
 
-<!-- iOS: мета-теги и иконка для "Add to Home Screen" -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Auto-Quiz">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="apple-touch-icon" href="/images/icon-192.png">
-
+  <!-- iOS support -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Auto-Quiz">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="apple-touch-icon" href="images/icon-192.png">
 </head>
 <body>
   <div id="quiz-container">
-  <h1 id="question-text"></h1>
-  <img id="question-image" src="" alt="Question Image">
-  <div id="options"></div>
-  <button id="check-btn" onclick="checkAnswer()">Antwort bestätigen</button>
-  <button id="next-btn" onclick="nextQuestion()" style="display:none">Nächste Frage</button>
-  <button id="translate-btn" onclick="toggleTranslation()">Übersetzung anzeigen</button>
-  <button id="restart-btn" onclick="restartQuiz()">Neu starten</button>
-</div>
+    <h1 id="question-text"></h1>
+    <img id="question-image" src="" alt="Question Image">
+    <div id="options"></div>
+    <button id="check-btn" onclick="checkAnswer()">Antwort bestätigen</button>
+    <button id="next-btn" onclick="nextQuestion()" style="display:none">Nächste Frage</button>
+    <button id="translate-btn" onclick="toggleTranslation()">Übersetzung anzeigen</button>
+    <button id="restart-btn" onclick="restartQuiz()">Neu starten</button>
+    <button id="install-btn" style="display:none">Install App</button>
+  </div>
 
+  <!-- ✅ Скрипт Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        // ⚠️ убрал "/" в начале — на GitHub Pages это ломает
+        navigator.serviceWorker.register('service-worker.js')
+          .then(reg => console.log('✅ Service worker registered:', reg.scope))
+          .catch(err => console.error('❌ Service worker registration failed:', err));
+      });
+    }
+  </script>
 
   <script src="app.js"></script>
 </body>

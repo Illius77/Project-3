@@ -9,48 +9,33 @@ const checkBtn = document.getElementById('check-btn');
 const nextBtn = document.getElementById('next-btn');
 const translateBtn = document.getElementById('translate-btn');
 const restartBtn = document.getElementById('restart-btn');
+const installBtn = document.getElementById('install-btn');
 
 questionTextEl.innerText = 'Lädt...';
 
-// Загрузка JSON
+// ------------------------
+//  Загрузка вопросов
+// ------------------------
 fetch('questions.json')
   .then(res => {
     if (!res.ok) throw new Error('HTTP error ' + res.status);
     return res.json();
   })
   .then(data => {
-    questions = data;
-    if (!questions || !questions.length) {
-      questionTextEl.innerText = 'Keine Fragen gefunden.';
-      checkBtn.style.display = 'none';
-      nextBtn.style.display = 'none';
-      return;
-    }
+    questions = data.map((q, i) => ({ id: i + 1, ...q }));
     showQuestion(currentQuestion);
   })
   .catch(err => {
     console.error('Failed to load questions.json', err);
-    questionTextEl.innerText = 'Fehler beim Laden der Fragen. Starten Sie einen lokalen Server und öffnen Sie http://localhost:8000';
-    optionsContainer.innerHTML = '';
-    checkBtn.style.display = 'none';
-    nextBtn.style.display = 'none';
+    questionTextEl.innerText = 'Fehler beim Laden der Fragen.';
   });
 
-// Функция сравнения массивов ответов
-function arraysEqual(a, b) {
-  if (a.length !== b.length) return false;
-  const sortedA = [...a].sort((x,y)=>x-y);
-  const sortedB = [...b].sort((x,y)=>x-y);
-  return sortedA.every((v,i) => v === sortedB[i]);
-}
-
-// Показ вопроса
+// ------------------------
+//  Показ вопроса
+// ------------------------
 function showQuestion(index) {
   const q = questions[index];
-  if (!q) {
-    questionTextEl.innerText = 'Keine Frage verfügbar.';
-    return;
-  }
+  if (!q) return;
 
   questionTextEl.innerText = `Frage ${q.id}: ${q.question}`;
   document.getElementById('question-image').src = q.image;
@@ -71,7 +56,9 @@ function showQuestion(index) {
   checkBtn.style.display = 'inline-block';
 }
 
-// Выбор ответа
+// ------------------------
+//  Выбор ответа
+// ------------------------
 function selectAnswer(index, button) {
   const selectedIndex = selectedAnswers.indexOf(index);
   if (selectedIndex > -1) {
@@ -83,7 +70,13 @@ function selectAnswer(index, button) {
   }
 }
 
-// Проверка ответа
+// ------------------------
+//  Проверка ответа
+// ------------------------
+function arraysEqual(a, b) {
+  return a.length === b.length && a.sort().every((v, i) => v === b.sort()[i]);
+}
+
 function checkAnswer() {
   if (selectedAnswers.length === 0) {
     alert('Bitte wählen Sie mindestens eine Antwort aus!');
@@ -91,22 +84,20 @@ function checkAnswer() {
   }
 
   const correct = questions[currentQuestion].answer;
-
   if (arraysEqual(correct, selectedAnswers)) {
     alert('Richtig!');
     nextBtn.style.display = 'inline-block';
     checkBtn.style.display = 'none';
   } else {
     alert('Falsch! Versuche es erneut.');
-    // Сброс выделения
-    for (let btn of optionsContainer.children) {
-      btn.style.backgroundColor = '';
-    }
+    for (let btn of optionsContainer.children) btn.style.backgroundColor = '';
     selectedAnswers = [];
   }
 }
 
-// Следующий вопрос
+// ------------------------
+//  Следующий вопрос
+// ------------------------
 function nextQuestion() {
   currentQuestion++;
   if (currentQuestion < questions.length) {
@@ -116,34 +107,52 @@ function nextQuestion() {
   }
 }
 
-// Переключение перевода
+// ------------------------
+//  Перевод
+// ------------------------
 function toggleTranslation() {
   const q = questions[currentQuestion];
   showingTranslation = !showingTranslation;
 
-  questionTextEl.innerText = showingTranslation 
+  questionTextEl.innerText = showingTranslation
     ? `Frage ${q.id}: ${q.question_translation}`
     : `Frage ${q.id}: ${q.question}`;
 
   const optionsButtons = optionsContainer.children;
   for (let i = 0; i < optionsButtons.length; i++) {
-    optionsButtons[i].innerText = showingTranslation ? q.options_translation[i] : q.options[i];
+    optionsButtons[i].innerText = showingTranslation
+      ? q.options_translation[i]
+      : q.options[i];
   }
 
-  translateBtn.innerText = showingTranslation ? 'Original anzeigen' : 'Übersetzung anzeigen';
+  translateBtn.innerText = showingTranslation
+    ? 'Original anzeigen'
+    : 'Übersetzung anzeigen';
 }
 
-// Начать заново
+// ------------------------
+//  Начать заново
+// ------------------------
 function restartQuiz() {
   currentQuestion = 0;
   showQuestion(currentQuestion);
 }
 
-// Service Worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(reg => console.log('SW registered:', reg))
-      .catch(err => console.log('SW registration failed:', err));
-  });
-}
+// ------------------------
+//  Установка PWA
+// ------------------------
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = 'inline-block';
+});
+
+installBtn.addEventListener('click', async () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const result = await deferredPrompt.userChoice;
+    console.log('Install result:', result.outcome);
+    installBtn.style.display = 'none';
+  }
+});
