@@ -40,7 +40,14 @@ function showQuestion(index) {
   if (!q) return;
 
   questionTextEl.innerText = `Frage ${q.id}: ${q.question}`;
-  document.getElementById('question-image').src = q.image;
+  
+  // Add error handling for images
+  const questionImage = document.getElementById('question-image');
+  questionImage.onerror = () => {
+    console.warn('Failed to load image:', q.image);
+    questionImage.src = 'images/offline-image.png';
+  };
+  questionImage.src = q.image;
 
   optionsContainer.innerHTML = '';
   q.options.forEach((option, i) => {

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'auto-quiz-v2';
+const CACHE_NAME = 'auto-quiz-v3';
 const BASE_PATH = '/Project-3'; // GitHub Pages path
 
 const ASSETS_TO_CACHE = [
@@ -22,11 +22,8 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('✅ Caching assets...');
+        console.log('📦 Caching assets...');
         return cache.addAll(ASSETS_TO_CACHE);
-      })
-      .catch(error => {
-        console.error('❌ Error caching assets:', error);
       })
   );
 });
@@ -39,27 +36,24 @@ self.addEventListener('activate', event => {
         return Promise.all(
           cacheNames
             .filter(cacheName => cacheName !== CACHE_NAME)
-            .map(cacheName => {
-              console.log('🗑️ Deleting old cache:', cacheName);
-              return caches.delete(cacheName);
-            })
+            .map(cacheName => caches.delete(cacheName))
         );
       })
   );
 });
 
-// Fetch event - serve from cache, fallback to network
+// Fetch event with improved image handling
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
       .then(cachedResponse => {
         if (cachedResponse) {
-          return cachedResponse; // Return cached version if available
+          return cachedResponse;
         }
-        return fetch(event.request) // Otherwise fetch from network
+        return fetch(event.request)
           .then(response => {
-            // Cache new successful responses
-            if (response.ok && response.type === 'basic') {
+            // Cache successful responses without type checking
+            if (response.ok) {
               const responseToCache = response.clone();
               caches.open(CACHE_NAME)
                 .then(cache => {
@@ -70,8 +64,11 @@ self.addEventListener('fetch', event => {
           });
       })
       .catch(() => {
-        // Return offline page if both cache and network fail
-        return new Response('Offline - No connection available');
+        // Return default offline image if image request fails
+        if (event.request.url.match(/\.(jpg|jpeg|png|gif|svg)$/)) {
+          return caches.match('images/offline-image.png');
+        }
+        return new Response('Offline content not available');
       })
   );
 });
