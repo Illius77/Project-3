@@ -11,6 +11,8 @@ const translateBtn = document.getElementById('translate-btn');
 const restartBtn = document.getElementById('restart-btn');
 const installBtn = document.getElementById('install-btn');
 
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
 questionTextEl.innerText = 'Lädt...';
 
 // ------------------------
@@ -143,9 +145,18 @@ function restartQuiz() {
 // ------------------------
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installBtn.style.display = 'inline-block';
+  if (isIOS) {
+    // На iOS показываем инструкцию по установке
+    installBtn.style.display = 'inline-block';
+    installBtn.addEventListener('click', () => {
+      alert('Чтобы установить приложение:\n1. Нажмите кнопку "Поделиться" (Share)\n2. Выберите "На экран «Домой»"');
+    });
+  } else {
+    // Стандартная логика для Android/Desktop
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = 'inline-block';
+  }
 });
 
 installBtn.addEventListener('click', async () => {
