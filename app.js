@@ -15,9 +15,7 @@ const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 questionTextEl.innerText = 'Lädt...';
 
-// ------------------------
-//  Загрузка вопросов
-// ------------------------
+
 fetch('questions.json')
   .then(res => {
     if (!res.ok) throw new Error('HTTP error ' + res.status);
@@ -32,9 +30,7 @@ fetch('questions.json')
     questionTextEl.innerText = 'Fehler beim Laden der Fragen.';
   });
 
-// ------------------------
-//  Показ вопроса
-// ------------------------
+
 function showQuestion(index) {
   const q = questions[index];
   if (!q) return;
@@ -66,7 +62,7 @@ function showQuestion(index) {
 }
 
 // ------------------------
-//  Выбор ответа
+//  answer selection
 // ------------------------
 function selectAnswer(index, button) {
   const selectedIndex = selectedAnswers.indexOf(index);
@@ -80,7 +76,7 @@ function selectAnswer(index, button) {
 }
 
 // ------------------------
-//  Проверка ответа
+//  answer check
 // ------------------------
 function arraysEqual(a, b) {
   return a.length === b.length && a.sort().every((v, i) => v === b.sort()[i]);
@@ -105,7 +101,7 @@ function checkAnswer() {
 }
 
 // ------------------------
-//  Следующий вопрос
+//  next question
 // ------------------------
 function nextQuestion() {
   currentQuestion++;
@@ -117,7 +113,7 @@ function nextQuestion() {
 }
 
 // ------------------------
-//  Перевод
+//   toggle translation
 // ------------------------
 function toggleTranslation() {
   const q = questions[currentQuestion];
@@ -140,7 +136,7 @@ function toggleTranslation() {
 }
 
 // ------------------------
-//  Начать заново
+//  restart quiz
 // ------------------------
 function restartQuiz() {
   currentQuestion = 0;
@@ -148,18 +144,18 @@ function restartQuiz() {
 }
 
 // ------------------------
-//  Установка PWA
+//  PWA installation
 // ------------------------
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
   if (isIOS) {
-    // На iOS показываем инструкцию по установке
+  
     installBtn.style.display = 'inline-block';
     installBtn.addEventListener('click', () => {
-      alert('Чтобы установить приложение:\n1. Нажмите кнопку "Поделиться" (Share)\n2. Выберите "На экран «Домой»"');
+      alert('To install the app:\n1. Click the “Share” button (Share)\n2. Select “To the Home screen” (Add to Home Screen)\n3. Confirm by clicking “Add”');
     });
   } else {
-    // Стандартная логика для Android/Desktop
+    
     e.preventDefault();
     deferredPrompt = e;
     installBtn.style.display = 'inline-block';
