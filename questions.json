@@ -1,172 +1,253 @@
 [
   {
-    "id": 1,
-    "question": "Was tun Sie, wenn nach einem Unfall der Bahnbetrieb behindert wird?",
-    "question_translation": "What should you do if train operations are obstructed after an accident?",
-    "options": [
-      "Ich benachrichtige sofort die Polizei und die Bahnverwaltung.",
-      "Ich sorge dafür, dass die Unfallstelle nicht verändert wird, bis die Polizei eintrifft.",
-      "Ich verlasse den Bahnübergang so schnell wie möglich."
-    ],
-    "options_translation": [
-      "I immediately notify the police and the railway administration.",
-      "I make sure the accident site is not altered until the police arrive.",
-      "I leave the railway crossing as quickly as possible."
-    ],
-    "answer": [0,2],
-    "image": "images/accident_sign.png"
+    "sectionId": 1,
+    "title": "Grundlagen der Verkehrssicherheit",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Was tun Sie, wenn nach einem Unfall der Bahnbetrieb behindert wird?",
+        "question_translation": "What should you do if train operations are obstructed after an accident?",
+        "options": [
+          "Ich benachrichtige sofort die Polizei und die Bahnverwaltung.",
+          "Ich sorge dafür, dass die Unfallstelle nicht verändert wird, bis die Polizei eintrifft.",
+          "Ich verlasse den Bahnübergang so schnell wie möglich."
+        ],
+        "options_translation": [
+          "I immediately notify the police and the railway administration.",
+          "I make sure the accident site is not altered until the police arrive.",
+          "I leave the railway crossing as quickly as possible."
+        ],
+        "answer": [0,2],
+        "image": "images/accident_sign.png"
+      },
+      {
+        "id": 2,
+        "question": "Sie beschädigen ein parkiertes Fahrzeug. Wie verhalten Sie sich?",
+        "question_translation": "You damage a parked vehicle. What should you do?",
+        "options": [
+          "Es reicht, wenn ich am beschädigten Fahrzeug eine Notiz mit meinen Angaben hinterlasse",
+          "Ich avisiere die Polizei, wenn ich den Geschädigten nicht sofort benachrichtigen kann",
+          "Ich muss nur ein Unfallprotokoll ausfüllen und es meiner Versicherung zusenden"
+        ],
+        "options_translation": [
+          "It is enough if I leave a note with my information on the damaged vehicle",
+          "I notify the police if I cannot immediately contact the owner",
+          "I only need to fill out an accident report and send it to my insurance"
+        ],
+        "answer": [1],
+        "image": "images/parked_car.png"
+      },
+      {
+        "id": 3,
+        "question": "Wann muss der Abstand zum vorausfahrenden Fahrzeug vergrössert werden??",
+        "question_translation": "When must the distance to the vehicle in front be increased ?",
+        "options": [
+          "Bei zunehmender Fahrgeschwindigkeit",
+          "Bei dichterem Verkehr",
+          "Wenn ich ein Fahrzeug mit grosser Motorleistung fahre"
+        ],
+        "options_translation": [
+          "When driving at higher speeds",
+          "In heavy traffic",
+          "When driving a high-performance vehicle"
+        ],
+        "answer": [0],
+        "image": "images/3.png"
+      },
+      {
+        "id": 4,
+        "question": "Welche der folgenden Massnahmen trägt am besten dazu bei, Pannen zu vermeiden?",
+        "question_translation": "Which of the following measures best helps to avoid breakdowns?",
+        "options": [
+          "Überprüfung des Fahrzeugs im Rahmen der periodischen Abgaskontrolle",
+          "regelmässige Wartung des Fahrzeuges gemäss den Vorgaben des Herstellers ",
+          "obligatorische Motorfahrzeugkontrolle durch die Zulassungsbehörde"
+        ],
+        "options_translation": [
+          "Checking the vehicle as part of the periodic emissions test",
+          " Regular maintenance of the vehicle according to the manufacturer's specifications",
+          " Mandatory vehicle inspection by the registration authority"
+        ],
+        "answer": [1],
+        "image": "images/4.png"
+      },
+      {
+        "id": 5,
+        "question": "Welchen Vorteil haben Sie bei einer Voll- oder Schreckbremsung, wenn Ihr Fahrzeug mit einem Automatischen Blockierverhinderer ABV (ABS) ausgerüstet ist?",
+        "question_translation": "What advantage do you have during a full or emergency stop if your vehicle is equipped with an Anti-lock Braking System (ABS)?",
+        "options": [
+          "Halbierung des Bremsweges",
+          "bessere Lenkbarkeit",
+          "bessere Reaktionszeit"
+        ],
+        "options_translation": [
+          " Halving the braking distance",
+          " Better steerability",
+          " Better reaction time"
+        ],
+        "answer": [1],
+        "image": "images/5.png"
+      },
+      {
+        "id": 6,
+        "question": "Sowohl die Sicherung wie auch die Verteilung der Ladung beeinflussen die Verkehrssicherheit. Worauf hat die Verteilung der Ladung Einfluss? ",
+        "question_translation": " Both the securing and distribution of the load affect traffic safety. What does the distribution of the load influence?",
+        "options": [
+          "Auf das Gesamtgewicht des Fahrzeuges",
+          "Auf die Schwerpunkthöhe",
+          "Auf das Fahrverhalten"
+        ],
+        "options_translation": [
+          " On the total weight of the vehicle",
+          " On the center of gravity height",
+          " On the driving behavior"
+        ],
+        "answer": [1,2],
+        "image": "images/6.png"
+      },
+      {
+        "id": 7,
+        "question": "Was zeigt diese Person und wie reagieren Sie?",
+        "question_translation": "",
+        "options": [
+          "Sie zeigt mit dem weissen Stock, dass sie sehbehindert ist und hier die Strasse überqueren will. Ich halte an. ",
+          "Sie wartet an der Bushaltestelle und zeigt, dass sie mit dem nächsten Bus mitfahren möchte. Ich fahre weiter.",
+          "Sie will die Strasse ausserhalb eines Fussgängerstreifens überqueren so bald es keine Fahrzeuge mehr hat. Ich fahre besonders aufmerksam weiter."
+        ],
+        "options_translation": [
+          " She is indicating with the white cane that she is visually impaired and wants to cross the street here. I stop.",
+          " She is waiting at the bus stop and indicates that she wants to take the next bus",
+          " She wants to cross the street outside a pedestrian crossing as soon as there are no more vehicles. I continue driving with special attention."
+        ],
+        "answer": [0],
+        "image": "images/7.png"
+      },
+      {
+        "id": 8,
+        "question": "Bei blinkendem Lichtsignal ..",
+        "question_translation": " When the light signal is flashing ..",
+        "options": [
+          "... habe ich Vortritt.",
+          "... muss ich an der Haltelinie beim 'Stop' anhalten.",
+          "... hat das Signal 'Stop' keine Bedeutung."
+        ],
+        "options_translation": [
+          " ... I have the right of way.",
+          " ... I must stop at the stop line.",
+          " ... the 'Stop' signal has no meaning."
+        ],
+        "answer": [1],
+        "image": "images/8.png"
+      },
+      {
+        "id": 9,
+        "question": "Welche Regel gilt in dieser Situation?",
+        "question_translation": " What rule applies in this situation?",
+        "options": [
+          "Unbegleiteten Blinden ist der Vortritt stets zu gewähren, wenn sie durch Hochhalten des weissen Stocks anzeigen, dass sie die Fahrbahn überqueren wollen.",
+          "Fussgänger müssen Fussgängerstreifen, Über- oder Unterführungen benützen, wenn diese weniger als 50 m entfernt sind.",
+          "Ausserhalb von Fussgängerstreifen haben die Fussgänger den Fahrzeugen den Vortritt zu lassen."
+        ],
+        "options_translation": [
+          " Unaccompanied blind people must always be given the right of way when they indicate by raising their white cane that they want to cross the road.",
+          " Pedestrians must use pedestrian crossings, overpasses or underpasses if they are less than 50 m away.",
+          " Outside of pedestrian crossings, pedestrians must yield to vehicles."
+        ],
+        "answer": [0],
+        "image": "images/7.png"
+      },
+      {
+        "id": 10,
+        "question": "Welches ist in dieser Situation das beste Verhalten?",
+        "question_translation": " What is the best behavior in this situation?",
+        "options": [
+          "Anhalten und warten bis die Person die Strasse überquert hat.",
+          "Anhalten und kurzes Hupsignal geben.",
+          "Anhalten und Motor abstellen."
+        ],
+        "options_translation": [
+          " Stop and wait until the person has crossed the street.",
+          " Stop and give a short honk.",
+          " Stop and turn off the engine."
+        ],
+        "answer": [0],
+        "image": "images/7.png"
+      }
+    ]
   },
   {
-    "id": 2,
-    "question": "Sie beschädigen ein parkiertes Fahrzeug. Wie verhalten Sie sich?",
-    "question_translation": "You damage a parked vehicle. What should you do?",
-    "options": [
-      "Es reicht, wenn ich am beschädigten Fahrzeug eine Notiz mit meinen Angaben hinterlasse",
-      "Ich avisiere die Polizei, wenn ich den Geschädigten nicht sofort benachrichtigen kann",
-      "Ich muss nur ein Unfallprotokoll ausfüllen und es meiner Versicherung zusenden"
-    ],
-    "options_translation": [
-      "It is enough if I leave a note with my information on the damaged vehicle",
-      "I notify the police if I cannot immediately contact the owner",
-      "I only need to fill out an accident report and send it to my insurance"
-    ],
-    "answer": [1],
-    "image": "images/parked_car.png"
-  },
-  {
-    "id": 3,
-    "question": "Wann muss der Abstand zum vorausfahrenden Fahrzeug vergrössert werden??",
-    "question_translation": "When must the distance to the vehicle in front be increased ?",
-    "options": [
-      "Bei zunehmender Fahrgeschwindigkeit",
-      "Bei dichterem Verkehr",
-      "Wenn ich ein Fahrzeug mit grosser Motorleistung fahre"
-    ],
-    "options_translation": [
-      "When driving at higher speeds",
-      "In heavy traffic",
-      "When driving a high-performance vehicle"
-    ],
-    "answer": [0],
-    "image": "images/3.png"
-  },
-   {
-    "id": 4,
-    "question": "Welche der folgenden Massnahmen trägt am besten dazu bei, Pannen zu vermeiden?",
-    "question_translation": "Which of the following measures best helps to avoid breakdowns?",
-    "options": [
-      "Überprüfung des Fahrzeugs im Rahmen der periodischen Abgaskontrolle",
-      "regelmässige Wartung des Fahrzeuges gemäss den Vorgaben des Herstellers ",
-      "obligatorische Motorfahrzeugkontrolle durch die Zulassungsbehörde"
-    ],
-    "options_translation": [
-      "Checking the vehicle as part of the periodic emissions test",
-      " Regular maintenance of the vehicle according to the manufacturer's specifications",
-      " Mandatory vehicle inspection by the registration authority"
-    ],
-    "answer": [1],
-    "image": "images/4.png"
-  },
-   {
-    "id": 5,
-    "question": "Welchen Vorteil haben Sie bei einer Voll- oder Schreckbremsung, wenn Ihr Fahrzeug mit einem Automatischen Blockierverhinderer ABV (ABS) ausgerüstet ist?",
-    "question_translation": "What advantage do you have during a full or emergency stop if your vehicle is equipped with an Anti-lock Braking System (ABS)?",
-    "options": [
-      "Halbierung des Bremsweges",
-      "bessere Lenkbarkeit",
-      "bessere Reaktionszeit"
-    ],
-    "options_translation": [
-      " Halving the braking distance",
-      " Better steerability",
-      " Better reaction time"
-    ],
-    "answer": [1],
-    "image": "images/5.png"
-  },
-   {
-    "id": 6,
-    "question": "Sowohl die Sicherung wie auch die Verteilung der Ladung beeinflussen die Verkehrssicherheit. Worauf hat die Verteilung der Ladung Einfluss? ",
-    "question_translation": " Both the securing and distribution of the load affect traffic safety. What does the distribution of the load influence?",
-    "options": [
-      "Auf das Gesamtgewicht des Fahrzeuges",
-      "Auf die Schwerpunkthöhe",
-      "Auf das Fahrverhalten"
-    ],
-    "options_translation": [
-      " On the total weight of the vehicle",
-      " On the center of gravity height",
-      " On the driving behavior"
-    ],
-    "answer": [1,2],
-    "image": "images/6.png"
-  },
-   {
-    "id": 7,
-    "question": "Was zeigt diese Person und wie reagieren Sie?",
-    "question_translation": "",
-    "options": [
-      "Sie zeigt mit dem weissen Stock, dass sie sehbehindert ist und hier die Strasse überqueren will. Ich halte an. ",
-      "Sie wartet an der Bushaltestelle und zeigt, dass sie mit dem nächsten Bus mitfahren möchte. Ich fahre weiter.",
-      "Sie will die Strasse ausserhalb eines Fussgängerstreifens überqueren so bald es keine Fahrzeuge mehr hat. Ich fahre besonders aufmerksam weiter."
-    ],
-    "options_translation": [
-      " She is indicating with the white cane that she is visually impaired and wants to cross the street here. I stop.",
-      " She is waiting at the bus stop and indicates that she wants to take the next bus",
-      " She wants to cross the street outside a pedestrian crossing as soon as there are no more vehicles. I continue driving with special attention."
-    ],
-    "answer": [0],
-    "image": "images/7.png"
-  },
-   {
-    "id": 8,
-    "question": "Bei blinkendem Lichtsignal ..",
-    "question_translation": " When the light signal is flashing ..",
-    "options": [
-      "... habe ich Vortritt.",
-      "... muss ich an der Haltelinie beim 'Stop' anhalten.",
-      "... hat das Signal 'Stop' keine Bedeutung."
-    ],
-    "options_translation": [
-      " ... I have the right of way.",
-      " ... I must stop at the stop line.",
-      " ... the 'Stop' signal has no meaning."
-    ],
-    "answer": [1],
-    "image": "images/8.png"
-  },
-   {
-    "id": 9,
-    "question": "Welche Regel gilt in dieser Situation?",
-    "question_translation": " What rule applies in this situation?",
-    "options": [
-      "Unbegleiteten Blinden ist der Vortritt stets zu gewähren, wenn sie durch Hochhalten des weissen Stocks anzeigen, dass sie die Fahrbahn überqueren wollen.",
-      "Fussgänger müssen Fussgängerstreifen, Über- oder Unterführungen benützen, wenn diese weniger als 50 m entfernt sind.",
-      "Ausserhalb von Fussgängerstreifen haben die Fussgänger den Fahrzeugen den Vortritt zu lassen."
-    ],
-    "options_translation": [
-      " Unaccompanied blind people must always be given the right of way when they indicate by raising their white cane that they want to cross the road.",
-      " Pedestrians must use pedestrian crossings, overpasses or underpasses if they are less than 50 m away.",
-      " Outside of pedestrian crossings, pedestrians must yield to vehicles."
-    ],
-    "answer": [0],
-    "image": "images/7.png"
-  },
-   {
-    "id": 10,
-    "question": "Welches ist in dieser Situation das beste Verhalten?",
-    "question_translation": " What is the best behavior in this situation?",
-    "options": [
-      "Anhalten und warten bis die Person die Strasse überquert hat.",
-      "Anhalten und kurzes Hupsignal geben.",
-      "Anhalten und Motor abstellen."
-    ],
-    "options_translation": [
-      " Stop and wait until the person has crossed the street.",
-      " Stop and give a short honk.",
-      " Stop and turn off the engine."
-    ],
-    "answer": [0],
-    "image": "images/7.png"
+    "sectionId": 2,
+    "title": "Verkehrsregeln und Vorschriften",
+    "questions": [
+      {
+        "id": 11,
+        "question": "Was bedeutet dieses Signal?",
+        "question_translation": "What does this signal mean?",
+        "options": [
+          "Verbot für Fahrzeuge aller Art",
+          "Verbot für Motorwagen und Motorräder",
+          "Verbot für Motorwagen, Motorräder und Motorfahrräder"
+        ],
+        "options_translation": [
+          " No entry for all types of vehicles",
+          " No entry for motor vehicles and motorcycles",
+          " No entry for motor vehicles, motorcycles and motorized bicycles"
+        ],
+        "answer": [2],
+        "image": "images/11.png"
+      },
+      {
+        "id": 12,
+        "question": "Was bedeutet dieses Signal?",
+        "question_translation": "What does this signal mean?",
+        "options": [
+          "Verbot für Fahrzeuge aller Art",
+          "Verbot für Motorwagen und Motorräder",
+          "Verbot für Motorwagen, Motorräder und Motorfahrräder"
+        ],
+        "options_translation": [
+          " No entry for all types of vehicles",
+          " No entry for motor vehicles and motorcycles",
+          " No entry for motor vehicles, motorcycles and motorized bicycles"
+        ],
+        "answer": [0],
+        "image": "images/12.png"
+      },
+      {
+        "id": 13,
+        "question": "Was bedeutet dieses Signal?",
+        "question_translation": "What does this signal mean?",
+        "options": [
+          "Verbot für Fahrzeuge aller Art",
+          "Verbot für Motorwagen und Motorräder",
+          "Verbot für Motorwagen, Motorräder und Motorfahrräder"
+        ],
+        "options_translation": [
+          " No entry for all types of vehicles",
+          " No entry for motor vehicles and motorcycles",
+          " No entry for motor vehicles, motorcycles and motorized bicycles"
+        ],
+        "answer": [1],
+        "image": "images/13.png"
+      },
+      {
+        "id": 14,
+        "question": "Was bedeutet dieses Signal?",
+        "question_translation": "What does this signal mean?",
+        "options": [
+          "'Vorfahrt gewähren'",
+          "'Halt! Vorfahrt gewähren'",
+          "'Stop'"
+        ],
+        "options_translation": [
+          "'Yield'",
+          "'Stop! Yield'",
+          "'Stop'"
+        ],
+        "answer": [0],
+        "image": "images/14.png"
+         }
+    ]
   }
 ]
+      

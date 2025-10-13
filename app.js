@@ -1,8 +1,14 @@
+let sections = [];
+let currentSection = null;
 let questions = [];
 let currentQuestion = 0;
 let selectedAnswers = [];
 let showingTranslation = false;
 
+// Get DOM elements
+const mainMenu = document.getElementById('main-menu');
+const sectionsContainer = document.getElementById('sections-container');
+const quizContainer = document.getElementById('quiz-container');
 const questionTextEl = document.getElementById('question-text');
 const optionsContainer = document.getElementById('options');
 const checkBtn = document.getElementById('check-btn');
@@ -16,20 +22,52 @@ const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 questionTextEl.innerText = 'Lädt...';
 
 
+// Load sections and show main menu
 fetch('questions.json')
   .then(res => {
     if (!res.ok) throw new Error('HTTP error ' + res.status);
     return res.json();
   })
   .then(data => {
-    questions = data.map((q, i) => ({ id: i + 1, ...q }));
-    showQuestion(currentQuestion);
+    sections = data;
+    showMainMenu();
   })
   .catch(err => {
-    console.error('Failed to load questions.json', err);
+    console.error('Failed to load sections:', err);
     questionTextEl.innerText = 'Fehler beim Laden der Fragen.';
   });
 
+function showMainMenu() {
+    mainMenu.style.display = 'block';
+    quizContainer.style.display = 'none';
+    sectionsContainer.innerHTML = '';
+    
+    sections.forEach(section => {
+        const button = document.createElement('button');
+        button.textContent = section.title;
+        button.onclick = () => startSection(section);
+        sectionsContainer.appendChild(button);
+    });
+}
+
+function startSection(section) {
+    currentSection = section;
+    questions = section.questions;
+    currentQuestion = 0;
+    mainMenu.style.display = 'none';
+    quizContainer.style.display = 'block';
+    showQuestion(currentQuestion);
+}
+
+function goHome() {
+    showMainMenu();
+}
+
+function restartSection() {
+    if (currentSection) {
+        startSection(currentSection);
+    }
+}
 
 function showQuestion(index) {
   const q = questions[index];
@@ -104,12 +142,13 @@ function checkAnswer() {
 //  next question
 // ------------------------
 function nextQuestion() {
-  currentQuestion++;
-  if (currentQuestion < questions.length) {
-    showQuestion(currentQuestion);
-  } else {
-    alert('Alle Fragen wurden beantwortet!');
-  }
+    currentQuestion++;
+    if (currentQuestion < questions.length) {
+        showQuestion(currentQuestion);
+    } else {
+        alert('Abschnitt beendet! Kehren Sie zur Übersicht zurück oder starten Sie neu.');
+        nextBtn.style.display = 'none';
+    }
 }
 
 // ------------------------

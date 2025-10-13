@@ -20,15 +20,23 @@
   <link rel="apple-touch-startup-image" href="images/splash.png">
 </head>
 <body>
-  <div id="quiz-container">
-    <h1 id="question-text"></h1>
-    <img id="question-image" src="" alt="Question Image">
-    <div id="options"></div>
-    <button id="check-btn" onclick="checkAnswer()">Antwort bestätigen</button>
-    <button id="next-btn" onclick="nextQuestion()" style="display:none">Nächste Frage</button>
-    <button id="translate-btn" onclick="toggleTranslation()">Übersetzung anzeigen</button>
-    <button id="restart-btn" onclick="restartQuiz()">Neu starten</button>
-    <button id="install-btn" style="display:none">Install App</button>
+  <!-- Add main menu container -->
+  <div id="main-menu" style="text-align: center;">
+      <h1>Auto-Quiz</h1>
+      <div id="sections-container"></div>
+  </div>
+
+  <!-- Add home button to quiz container -->
+  <div id="quiz-container" style="display: none;">
+      <button id="home-btn" onclick="goHome()">Zurück zur Übersicht</button>
+      <h1 id="question-text"></h1>
+      <img id="question-image" src="" alt="Question Image">
+      <div id="options"></div>
+      <button id="check-btn" onclick="checkAnswer()">Antwort bestätigen</button>
+      <button id="next-btn" onclick="nextQuestion()" style="display:none">Nächste Frage</button>
+      <button id="translate-btn" onclick="toggleTranslation()">Übersetzung anzeigen</button>
+      <button id="restart-btn" onclick="restartSection()">Abschnitt neu starten</button>
+      <button id="install-btn" style="display:none">Install App</button>
   </div>
 
   <!-- ✅ Service Worker -->
