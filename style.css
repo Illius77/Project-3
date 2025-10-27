@@ -1,4 +1,4 @@
-/* 🌑 Тёмная тема в стиле приложения */
+/* basic styles */
 body {
   font-family: 'Inter', Arial, sans-serif;
   background-color: #111;
@@ -9,7 +9,7 @@ body {
   min-height: 100vh;
 }
 
-/* Заголовки */
+/* Titles */
 h1 {
   font-size: 28px;
   margin-bottom: 20px;
@@ -20,15 +20,17 @@ h2 {
   color: #aaa;
 }
 
-/* Изображение вопроса */
+/* Questions Pictures */
 #question-image {
   max-width: 90%;
+  height: auto;
   border-radius: 12px;
-  margin: 20px 0;
+  margin: 20px auto;
+  display: block; /* This makes the image center properly */
   box-shadow: 0 0 15px rgba(0,0,0,0.4);
 }
 
-/* Кнопки — в стиле карточек */
+/* Buttons */
 button {
   display: block;
   width: 80%;
@@ -49,7 +51,7 @@ button:hover {
   background: #2a2a2a;
 }
 
-/* Основные кнопки действий (Check / Next / Restart / Install) */
+/* (Check / Next / Restart / Install) */
 #check-btn, #next-btn, #restart-btn, #install-btn, #translate-btn, #home-btn {
   background: #0fd978;
   color: #000;
@@ -65,7 +67,7 @@ button:hover {
   opacity: 0.85;
 }
 
-/* Контейнер секций */
+/* Section container */
 #sections-container button {
   background: #1c1c1c;
   color: #f0f0f0;
@@ -81,7 +83,11 @@ button:hover {
   background: #2a2a2a;
 }
 
-/* --- Подсветка вариантов --- */
+/* --- Highlighting options --- */
+.option-selected {
+  outline: 2px solid #0fd978;
+}
+
 .option-correct {
   background-color: #0fd978 !important;
   color: #000 !important;
@@ -92,17 +98,19 @@ button:hover {
   color: #fff !important;
 }
 
-.option-selected {
-  outline: 2px solid #0fd978;
-}
-
-/* Кнопка домой */
+/* Home button */
 #home-btn {
   margin-bottom: 20px;
   border-radius: 10px;
+  background: #ff3b3b;
+  color: #fff;
 }
 
-/* Эффект для плавного появления */
+#home-btn:hover {
+  background: #ff5252;
+}
+
+/* Effect for smooth appearance */
 #quiz-container, #main-menu {
   animation: fadeIn 0.4s ease-in-out;
 }
@@ -110,4 +118,99 @@ button:hover {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+#practice-exam-btn {
+    display: block;
+    width: 80%;
+    margin: 20px auto;
+    padding: 15px;
+    font-size: 18px;
+    background: #0fd978;
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+/* Timer */
+#exam-timer {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #ffffff;
+  color: #000000;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.timer-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.timer-box {
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.options-container {
+    margin: 20px 0;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.translation-container {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.primary-btn {
+    padding: 10px 20px;
+    background-color: #109522;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.secondary-btn {
+    padding: 10px 20px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.translation-btn {
+    padding: 8px 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Translation button specific styling */
+#translate-btn {
+  background: #0161b0; /* Nice blue color */
+  color: #fff;
+}
+
+#translate-btn:hover {
+  background: #0463c3; /* Darker blue on hover */
 }

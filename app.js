@@ -5,6 +5,12 @@ let currentQuestion = 0;
 let selectedAnswers = [];
 let showingTranslation = false;
 
+// Add new variables
+let examQuestions = [];
+let examMode = false;
+let correctAnswers = 0;
+let timer;
+
 // Get DOM elements
 const mainMenu = document.getElementById('main-menu');
 const sectionsContainer = document.getElementById('sections-container');
@@ -16,6 +22,9 @@ const nextBtn = document.getElementById('next-btn');
 const translateBtn = document.getElementById('translate-btn');
 const restartBtn = document.getElementById('restart-btn');
 const installBtn = document.getElementById('install-btn');
+const practiceExamBtn = document.getElementById('practice-exam-btn');
+const examTimer = document.getElementById('exam-timer');
+const timerDisplay = document.getElementById('timer');
 
 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
@@ -60,7 +69,16 @@ function startSection(section) {
 }
 
 function goHome() {
-    showMainMenu();
+    if (examMode) {
+        if (confirm('Möchten Sie die Prüfung wirklich abbrechen?')) {
+            clearInterval(timer);
+            examTimer.style.display = 'none';
+            examMode = false;
+            showMainMenu();
+        }
+    } else {
+        showMainMenu();
+    }
 }
 
 function restartSection() {
@@ -69,47 +87,71 @@ function restartSection() {
     }
 }
 
+// Fix image loading in showQuestion function
 function showQuestion(index) {
   const q = questions[index];
   if (!q) return;
 
-  questionTextEl.innerText = `Frage ${q.id}: ${q.question}`;
+  questionTextEl.innerText = q.question ? 
+    `Frage ${q.id}: ${q.question}` : 
+    `Frage ${index + 1}`;
   
-  // Add error handling for images
   const questionImage = document.getElementById('question-image');
-  questionImage.onerror = () => {
-    console.warn('Failed to load image:', q.image);
-    questionImage.src = 'images/offline-image.png';
-  };
-  questionImage.src = q.image;
+  if (q.image) {
+    questionImage.style.display = 'block';
+    questionImage.src = q.image;
+  } else {
+    questionImage.style.display = 'none';
+  }
 
   optionsContainer.innerHTML = '';
-  q.options.forEach((option, i) => {
-    const btn = document.createElement('button');
-    btn.innerText = option;
-    btn.type = 'button';
-    btn.onclick = () => selectAnswer(i, btn);
-    optionsContainer.appendChild(btn);
-  });
+  if (q.options && q.options.length) {
+    q.options.forEach((option, i) => {
+      const btn = document.createElement('button');
+      btn.innerText = option;
+      btn.onclick = () => selectAnswer(i, btn);
+      optionsContainer.appendChild(btn);
+    });
+  }
 
   selectedAnswers = [];
   showingTranslation = false;
   translateBtn.innerText = 'Übersetzung anzeigen';
-  nextBtn.style.display = 'none';
-  checkBtn.style.display = 'inline-block';
+
+  if (examMode) {
+    document.getElementById('confirm-answer').style.display = 'block';
+    document.getElementById('check-btn').style.display = 'none';
+    document.getElementById('restart-btn').style.display = 'none'; // Hide restart button in exam mode
+  } else {
+    document.getElementById('confirm-answer').style.display = 'none';
+    document.getElementById('check-btn').style.display = 'block';
+    document.getElementById('restart-btn').style.display = 'block'; // Show restart button in practice mode
+  }
+  document.getElementById('next-btn').style.display = 'none';
 }
 
 // ------------------------
 //  answer selection
 // ------------------------
 function selectAnswer(index, button) {
-  const selectedIndex = selectedAnswers.indexOf(index);
-  if (selectedIndex > -1) {
-    selectedAnswers.splice(selectedIndex, 1);
-    button.style.backgroundColor = '';
+  if (examMode) {
+    // Single selection in exam mode
+    const buttons = optionsContainer.getElementsByTagName('button');
+    Array.from(buttons).forEach(btn => {
+      btn.classList.remove('option-selected');
+    });
+    selectedAnswers = [index];
+    button.classList.add('option-selected');
   } else {
-    selectedAnswers.push(index);
-    button.style.backgroundColor = '#a0e7a0';
+    // Multiple selection in practice mode
+    const selectedIndex = selectedAnswers.indexOf(index);
+    if (selectedIndex > -1) {
+      selectedAnswers.splice(selectedIndex, 1);
+      button.classList.remove('option-selected');
+    } else {
+      selectedAnswers.push(index);
+      button.classList.add('option-selected');
+    }
   }
 }
 
@@ -127,15 +169,38 @@ function checkAnswer() {
   }
 
   const correct = questions[currentQuestion].answer;
+  const buttons = optionsContainer.getElementsByTagName('button');
+
   if (arraysEqual(correct, selectedAnswers)) {
-    alert('Richtig!');
-    nextBtn.style.display = 'inline-block';
-    checkBtn.style.display = 'none';
+    // Correct answer
+    for (let index of selectedAnswers) {
+      buttons[index].classList.add('option-correct');
+    }
+    document.getElementById('next-btn').style.display = 'block';
+    document.getElementById('check-btn').style.display = 'none';
   } else {
-    alert('Falsch! Versuche es erneut.');
-    for (let btn of optionsContainer.children) btn.style.backgroundColor = '';
+    // Wrong answer
+    alert('Falsch! Versuchen Sie es erneut.');
+    for (let btn of buttons) {
+      btn.classList.remove('option-selected', 'option-wrong', 'option-correct');
+    }
     selectedAnswers = [];
   }
+}
+
+function confirmAnswer() {
+  if (selectedAnswers.length === 0) {
+    alert('Bitte wählen Sie mindestens eine Antwort aus');
+    return;
+  }
+
+  const correct = questions[currentQuestion].answer;
+  if (arraysEqual(correct, selectedAnswers)) {
+    correctAnswers++;
+  }
+  
+  document.getElementById('confirm-answer').style.display = 'none';
+  document.getElementById('next-btn').style.display = 'block';
 }
 
 // ------------------------
@@ -145,10 +210,29 @@ function nextQuestion() {
     currentQuestion++;
     if (currentQuestion < questions.length) {
         showQuestion(currentQuestion);
+    } else if (examMode) {
+        finishExam();
     } else {
-        alert('Abschnitt beendet! Kehren Sie zur Übersicht zurück oder starten Sie neu.');
+        alert('Abschnitt beendet!');
         nextBtn.style.display = 'none';
     }
+}
+
+function finishExam() {
+    clearInterval(timer);
+    examTimer.style.display = 'none';
+    
+    const totalQuestions = examQuestions.length;
+    const requiredToPass = Math.ceil(totalQuestions * 0.9); // 90% to pass
+    const passed = correctAnswers >= requiredToPass;
+    
+    const message = passed ? 
+        `Gratulation! Sie haben bestanden!\nRichtige Antworten: ${correctAnswers}/${totalQuestions}` :
+        `Leider nicht bestanden.\nRichtige Antworten: ${correctAnswers}/${totalQuestions}\nMin. ${requiredToPass} richtige Antworten erforderlich.`;
+    
+    alert(message);
+    examMode = false;
+    showMainMenu();
 }
 
 // ------------------------
@@ -209,3 +293,102 @@ installBtn.addEventListener('click', async () => {
     installBtn.style.display = 'none';
   }
 });
+
+// Add exam functions
+function startPracticeExam() {
+    examMode = true;
+    correctAnswers = 0;
+    examQuestions = getRandomQuestions(50); // Get up to 50 random questions
+    questions = examQuestions;
+    currentQuestion = 0;
+    
+    mainMenu.style.display = 'none';
+    quizContainer.style.display = 'block';
+    examTimer.style.display = 'block';
+    document.getElementById('restart-btn').style.display = 'none'; // Hide restart button
+    
+    startTimer(45); // 45 minutes
+    showQuestion(currentQuestion);
+}
+
+function getRandomQuestions(count) {
+  let allQuestions = [];
+  
+  sections.forEach(section => {
+    if (section.questions) {
+      section.questions.forEach(question => {
+        // Only add questions that have at least a question property or image
+        if (question.question || question.image) {
+          allQuestions.push(question);
+        }
+      });
+    }
+  });
+  
+  console.log(`Total available questions: ${allQuestions.length}`); // Debug log
+  
+  if (allQuestions.length === 0) {
+    alert('Keine Fragen verfügbar.');
+    return [];
+  }
+  
+  const actualCount = Math.min(count, allQuestions.length);
+  
+  // Shuffle questions
+  for (let i = allQuestions.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [allQuestions[i], allQuestions[j]] = [allQuestions[j], allQuestions[i]];
+  }
+  
+  return allQuestions.slice(0, actualCount);
+}
+
+function startTimer(minutes) {
+    let time = minutes * 60;
+    timer = setInterval(() => {
+        const mins = Math.floor(time / 60);
+        const secs = time % 60;
+        timerDisplay.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+        
+        if (time <= 0) {
+            clearInterval(timer);
+            alert('Zeit ist abgelaufen!');
+            timerDisplay.textContent = '0:00';
+        } else {
+            time--;
+        }
+    }, 1000);
+}
+
+// Fix practice exam button by adding event listener
+document.addEventListener('DOMContentLoaded', () => {
+  const practiceExamBtn = document.getElementById('practice-exam-btn');
+  if (practiceExamBtn) {
+    practiceExamBtn.addEventListener('click', () => {
+      console.log('Starting practice exam...'); // Debug log
+      startPracticeExam();
+    });
+  }
+});
+
+// Update startPracticeExam to include debug logs
+function startPracticeExam() {
+  console.log('Initializing exam mode...'); // Debug log
+  
+  examMode = true;
+  correctAnswers = 0;
+  examQuestions = getRandomQuestions(50);
+  
+  console.log(`Got ${examQuestions.length} random questions`); // Debug log
+  
+  questions = examQuestions;
+  currentQuestion = 0;
+  
+  mainMenu.style.display = 'none';
+  quizContainer.style.display = 'block';
+  examTimer.style.display = 'block';
+  document.getElementById('restart-btn').style.display = 'none'; // Hide restart button
+  
+  startTimer(45);
+  showQuestion(currentQuestion);
+}

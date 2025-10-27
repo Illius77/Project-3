@@ -23,19 +23,32 @@
   <!-- Add main menu container -->
   <div id="main-menu" style="text-align: center;">
       <h1>Auto-Quiz</h1>
+      <button id="practice-exam-btn" class="main-btn">Prüfungssimulation</button>
       <div id="sections-container"></div>
   </div>
 
-  <!-- Add home button to quiz container -->
+  <!-- Redesigned exam timer -->
+  <div id="exam-timer" class="timer-container" style="display: none;">
+    <div class="timer-box">
+      Zeit übrig: <span id="timer">45:00</span>
+    </div>
+  </div>
+
+  <!-- Restructured quiz container -->
   <div id="quiz-container" style="display: none;">
       <button id="home-btn" onclick="goHome()">Zurück zur Übersicht</button>
       <h1 id="question-text"></h1>
       <img id="question-image" src="" alt="Question Image">
-      <div id="options"></div>
-      <button id="check-btn" onclick="checkAnswer()">Antwort bestätigen</button>
-      <button id="next-btn" onclick="nextQuestion()" style="display:none">Nächste Frage</button>
-      <button id="translate-btn" onclick="toggleTranslation()">Übersetzung anzeigen</button>
-      <button id="restart-btn" onclick="restartSection()">Abschnitt neu starten</button>
+      <div id="options" class="options-container"></div>
+      <div class="button-container">
+          <button id="check-btn" onclick="checkAnswer()" class="primary-btn">Antwort prüfen</button>
+          <button id="confirm-answer" onclick="confirmAnswer()" class="primary-btn" style="display:none">Antwort bestätigen</button>
+          <button id="next-btn" onclick="nextQuestion()" class="primary-btn" style="display:none">Nächste Frage</button>
+          <button id="restart-btn" onclick="restartSection()" class="secondary-btn">Abschnitt neu starten</button>
+      </div>
+      <div class="translation-container">
+          <button id="translate-btn" onclick="toggleTranslation()" class="translation-btn">Übersetzung anzeigen</button>
+      </div>
       <button id="install-btn" style="display:none">Install App</button>
   </div>
 
