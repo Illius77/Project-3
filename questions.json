@@ -249,5 +249,189 @@
          }
     ]
   }
+  ,
+  {
+    "sectionId": 3,
+    "title": "Geschwindigkeit und Abstand",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Welche Höchstgeschwindigkeit gilt innerorts?",
+        "question_translation": "What is the speed limit in built-up areas?",
+        "options": [
+          "50 km/h",
+          "60 km/h",
+          "80 km/h"
+        ],
+        "options_translation": [
+          "50 km/h",
+          "60 km/h",
+          "80 km/h"
+        ],
+        "answer": [0],
+        "image": "images/speed_limit.png"
+      }
+    ]
+  },
+  {
+    "sectionId": 4,
+    "title": "Parkierung und Haltevorschriften",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Wo ist das Parkieren verboten?",
+        "question_translation": "Where is parking prohibited?",
+        "options": [
+          "Auf Fussgängerstreifen und 5m davor",
+          "Neben einer Sicherheitslinie",
+          "Beide Antworten sind richtig"
+        ],
+        "options_translation": [
+          "On pedestrian crossings and 5m before them",
+          "Next to a safety line",
+          "Both answers are correct"
+        ],
+        "answer": [2],
+        "image": "images/parking.png"
+      }
+    ]
+  },
+  {
+    "sectionId": 5,
+    "title": "Verkehrssignale und Markierungen",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Was bedeutet eine gelb blinkende Ampel?",
+        "question_translation": "What does a yellow flashing traffic light mean?",
+        "options": [
+          "Vorsichtig weiterfahren",
+          "Anhalten",
+          "Warten bis grün"
+        ],
+        "options_translation": [
+          "Proceed with caution",
+          "Stop",
+          "Wait until green"
+        ],
+        "answer": [0],
+        "image": "images/traffic_light.png"
+      }
+    ]
+  },
+  {
+    "sectionId": 6,
+    "title": "Fahrzeugausrüstung und Technik",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Wann müssen Sie die Winterreifen montieren?",
+        "question_translation": "When should you mount winter tires?",
+        "options": [
+          "Bei Temperaturen unter 7°C",
+          "Ab Oktober",
+          "Wenn Schnee liegt"
+        ],
+        "options_translation": [
+          "At temperatures below 7°C",
+          "From October",
+          "When there is snow"
+        ],
+        "answer": [0],
+        "image": "images/winter_tires.png"
+      }
+    ]
+  },
+  {
+    "sectionId": 7,
+    "title": "Umweltschutz und Energiesparen",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Wie können Sie kraftstoffsparend fahren?",
+        "question_translation": "How can you drive fuel-efficiently?",
+        "options": [
+          "Vorausschauend fahren",
+          "Früh hochschalten",
+          "Beide Antworten sind richtig"
+        ],
+        "options_translation": [
+          "Drive anticipatory",
+          "Shift up early",
+          "Both answers are correct"
+        ],
+        "answer": [2],
+        "image": "images/eco_driving.png"
+      }
+    ]
+  },
+  {
+    "sectionId": 8,
+    "title": "Notfälle und Erste Hilfe",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Was ist bei einem Unfall zuerst zu tun?",
+        "question_translation": "What should be done first in case of an accident?",
+        "options": [
+          "Unfallstelle absichern",
+          "Notruf wählen",
+          "Erste Hilfe leisten"
+        ],
+        "options_translation": [
+          "Secure accident site",
+          "Call emergency",
+          "Provide first aid"
+        ],
+        "answer": [0],
+        "image": "images/accident.png"
+      }
+    ]
+  },
+  {
+    "sectionId": 9,
+    "title": "Besondere Verkehrssituationen",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Wie verhalten Sie sich bei Aquaplaning?",
+        "question_translation": "How should you react to aquaplaning?",
+        "options": [
+          "Stark bremsen",
+          "Gas wegnehmen und ausrollen lassen",
+          "Gegenlenken"
+        ],
+        "options_translation": [
+          "Brake hard",
+          "Release gas and let it coast",
+          "Counter-steer"
+        ],
+        "answer": [1],
+        "image": "images/aquaplaning.png"
+      }
+    ]
+  },
+  {
+    "sectionId": 10,
+    "title": "Fahrtechnik und Fahrstil",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Was ist beim Fahren in Kurven zu beachten?",
+        "question_translation": "What should be considered when driving in curves?",
+        "options": [
+          "Vor der Kurve beschleunigen",
+          "In der Kurve bremsen",
+          "Vor der Kurve Geschwindigkeit anpassen"
+        ],
+        "options_translation": [
+          "Accelerate before the curve",
+          "Brake in the curve",
+          "Adjust speed before the curve"
+        ],
+        "answer": [2],
+        "image": "images/curve.png"
+      }
+    ]
+  }
 ]
-      

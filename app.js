@@ -313,34 +313,33 @@ function startPracticeExam() {
 
 function getRandomQuestions(count) {
   let allQuestions = [];
-  
+  let questionsPerSection = Math.ceil(count / sections.length); // Distribute questions evenly
+
+  // First, collect questions from all sections
   sections.forEach(section => {
-    if (section.questions) {
-      section.questions.forEach(question => {
-        // Only add questions that have at least a question property or image
-        if (question.question || question.image) {
-          allQuestions.push(question);
-        }
-      });
+    if (section.questions && section.questions.length > 0) {
+      // Get random questions from each section
+      let sectionQuestions = [...section.questions];
+      shuffleArray(sectionQuestions);
+      sectionQuestions = sectionQuestions.slice(0, questionsPerSection);
+      allQuestions.push(...sectionQuestions);
     }
   });
+
+  // Shuffle final array
+  shuffleArray(allQuestions);
   
-  console.log(`Total available questions: ${allQuestions.length}`); // Debug log
-  
-  if (allQuestions.length === 0) {
-    alert('Keine Fragen verfügbar.');
-    return [];
-  }
-  
-  const actualCount = Math.min(count, allQuestions.length);
-  
-  // Shuffle questions
-  for (let i = allQuestions.length - 1; i > 0; i--) {
+  // Trim to requested count
+  return allQuestions.slice(0, count);
+}
+
+// Add Fisher-Yates shuffle algorithm
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [allQuestions[i], allQuestions[j]] = [allQuestions[j], allQuestions[i]];
+    [array[i], array[j]] = [array[j], array[i]];
   }
-  
-  return allQuestions.slice(0, actualCount);
+  return array;
 }
 
 function startTimer(minutes) {
