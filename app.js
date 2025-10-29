@@ -298,7 +298,7 @@ installBtn.addEventListener('click', async () => {
 function startPracticeExam() {
     examMode = true;
     correctAnswers = 0;
-    examQuestions = getRandomQuestions(50); // Get up to 50 random questions
+    examQuestions = getRandomQuestions(3); // Get up to 50 random questions
     questions = examQuestions;
     currentQuestion = 0;
     
@@ -376,7 +376,7 @@ function startPracticeExam() {
   
   examMode = true;
   correctAnswers = 0;
-  examQuestions = getRandomQuestions(50);
+  examQuestions = getRandomQuestions(3);
   
   console.log(`Got ${examQuestions.length} random questions`); // Debug log
   

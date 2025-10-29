@@ -4,7 +4,7 @@ body {
   background-color: #111;
   color: #f0f0f0;
   margin: 0;
-  padding: 20px;
+  padding: 60px 20px 20px; /* Add top padding to avoid content being hidden under fixed header */
   text-align: center;
   min-height: 100vh;
 }
@@ -12,7 +12,7 @@ body {
 /* Titles */
 h1 {
   font-size: 28px;
-  margin-bottom: 20px;
+  margin: 20px 0 20px; /* Add top margin */
   color: #fff;
 }
 
@@ -25,7 +25,7 @@ h2 {
   max-width: 90%;
   height: auto;
   border-radius: 12px;
-  margin: 20px auto;
+  margin: 30px auto; /* Increase top margin */
   display: block; /* This makes the image center properly */
   box-shadow: 0 0 15px rgba(0,0,0,0.4);
 }
@@ -100,14 +100,56 @@ button:hover {
 
 /* Home button */
 #home-btn {
-  margin-bottom: 20px;
-  border-radius: 10px;
-  background: #ff3b3b;
-  color: #fff;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background: #ff3b3b;
+    color: #fff;
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    width: auto;
+    min-width: 200px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 0 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 #home-btn:hover {
   background: #ff5252;
+}
+
+/* Timer box: make it identical to #home-btn except color */
+#exam-timer {
+    border-radius: 10px;
+    background: #fff;
+    color: #000;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    width: auto;
+    min-width: 200px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 0 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Timer text inside the box */
+#timer {
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
 }
 
 /* Effect for smooth appearance */
@@ -133,21 +175,7 @@ button:hover {
     cursor: pointer;
 }
 
-/* Timer */
-#exam-timer {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #ffffff;
-  color: #000000;
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: 500;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  z-index: 1000;
-}
-
+/* ensure the timer text is visible and centered */
 .timer-container {
     position: fixed;
     top: 20px;
@@ -163,14 +191,14 @@ button:hover {
 }
 
 .options-container {
-    margin: 20px 0;
+    margin: 30px 0; /* Increase top margin */
 }
 
 .button-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: 20px 0;
+    margin: 30px 0; /* Increase top margin */
 }
 
 .translation-container {
@@ -213,4 +241,19 @@ button:hover {
 
 #translate-btn:hover {
   background: #0463c3; /* Darker blue on hover */
+}
+
+/* Update header container to handle absolute positioning */
+.header-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: #ff3b3b;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
 }

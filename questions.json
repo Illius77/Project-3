@@ -194,7 +194,7 @@
           " No entry for motor vehicles, motorcycles and motorized bicycles"
         ],
         "answer": [2],
-        "image": "images/11.png"
+        "image": "images/5.png"
       },
       {
         "id": 12,
@@ -211,7 +211,7 @@
           " No entry for motor vehicles, motorcycles and motorized bicycles"
         ],
         "answer": [0],
-        "image": "images/12.png"
+        "image": "images/5.png"
       },
       {
         "id": 13,
@@ -228,7 +228,7 @@
           " No entry for motor vehicles, motorcycles and motorized bicycles"
         ],
         "answer": [1],
-        "image": "images/13.png"
+        "image": "images/3.png"
       },
       {
         "id": 14,
@@ -245,7 +245,7 @@
           "'Stop'"
         ],
         "answer": [0],
-        "image": "images/14.png"
+        "image": "images/7.png"
          }
     ]
   }
@@ -269,7 +269,7 @@
           "80 km/h"
         ],
         "answer": [0],
-        "image": "images/speed_limit.png"
+        "image": "images/5.png"
       }
     ]
   },
@@ -292,7 +292,7 @@
           "Both answers are correct"
         ],
         "answer": [2],
-        "image": "images/parking.png"
+        "image": "images/5.png"
       }
     ]
   },
@@ -315,7 +315,7 @@
           "Wait until green"
         ],
         "answer": [0],
-        "image": "images/traffic_light.png"
+        "image": "images/7.png"
       }
     ]
   },
@@ -338,7 +338,7 @@
           "When there is snow"
         ],
         "answer": [0],
-        "image": "images/winter_tires.png"
+        "image": "images/4.png"
       }
     ]
   },
@@ -361,7 +361,7 @@
           "Both answers are correct"
         ],
         "answer": [2],
-        "image": "images/eco_driving.png"
+        "image": "images/5.png"
       }
     ]
   },
@@ -384,7 +384,7 @@
           "Provide first aid"
         ],
         "answer": [0],
-        "image": "images/accident.png"
+        "image": "images/3.png"
       }
     ]
   },
@@ -407,7 +407,7 @@
           "Counter-steer"
         ],
         "answer": [1],
-        "image": "images/aquaplaning.png"
+        "image": "images/5.png"
       }
     ]
   },
@@ -430,7 +430,7 @@
           "Adjust speed before the curve"
         ],
         "answer": [2],
-        "image": "images/curve.png"
+        "image": "images/7.png"
       }
     ]
   }
