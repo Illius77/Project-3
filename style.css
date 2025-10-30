@@ -132,8 +132,8 @@ button:hover {
     right: 20px;
     top: 10px;
     width: auto;
-    min-width: 200px;
-    height: 40px;
+    min-width: 150px;
+    height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
